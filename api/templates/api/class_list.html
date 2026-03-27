@@ -1,0 +1,32 @@
+{% extends 'api/base.html' %}
+{% block content %}
+<h2 class="text-2xl font-bold mb-6">Lịch học theo tuần</h2>
+
+<div class="grid grid-cols-7 gap-4">
+    {% for day_num, day_name in days %}
+    <div class="bg-white p-4 rounded shadow">
+        <h3 class="font-bold border-b pb-2 mb-4 text-blue-600">{{ day_name }}</h3>
+        
+        {% for class in classes %}
+            {% if class.day_of_week == day_num %}
+            <div class="mb-4 p-2 border rounded hover:bg-gray-50 text-sm">
+                <p class="font-bold">{{ class.name }}</p>
+                <p>{{ class.time_slot|time:"H:i" }} - {{ class.teacher_name }}</p>
+                <p class="text-gray-500">Sĩ số: {{ class.registrations.count }}/{{ class.max_students }}</p>
+                
+                <form method="POST" action="{% url 'register_class' class.id %}" class="mt-2">
+                    {% csrf_token %}
+                    <select name="student_id" class="w-full text-xs border p-1 mb-1">
+                        {% for student in students %}
+                            <option value="{{ student.id }}">{{ student.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" class="bg-green-500 text-white px-2 py-1 rounded text-xs w-full">Đăng ký</button>
+                </form>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

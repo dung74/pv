@@ -1,0 +1,68 @@
+{% extends 'api/base.html' %}
+{% block content %}
+<div class="grid grid-cols-2 gap-8">
+
+    <!-- Form tạo phụ huynh -->
+    <div class="bg-white p-6 rounded shadow">
+        <h2 class="text-xl font-bold mb-4">Tạo Phụ huynh</h2>
+
+        <form method="POST" action="{% url 'parent_student' %}">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="create_parent">
+
+            <div class="mb-4">
+                <input name="name" placeholder="Tên phụ huynh" class="w-full border p-2" required>
+            </div>
+
+            <div class="mb-4">
+                <input name="phone" placeholder="Số điện thoại" class="w-full border p-2" required>
+            </div>
+
+            <div class="mb-4">
+                <input name="email" type="email" placeholder="Email" class="w-full border p-2" required>
+            </div>
+
+            <button class="bg-blue-600 text-white px-4 py-2 rounded">Lưu Phụ huynh</button>
+        </form>
+    </div>
+
+    <!-- Form tạo học sinh -->
+    <div class="bg-white p-6 rounded shadow">
+        <h2 class="text-xl font-bold mb-4">Tạo Học sinh</h2>
+
+        <form method="POST" action="{% url 'parent_student' %}">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="create_student">
+
+            <div class="mb-4">
+                <input name="name" placeholder="Tên học sinh" class="w-full border p-2" required>
+            </div>
+
+            <div class="mb-4">
+                <input name="dob" type="date" class="w-full border p-2" required>
+            </div>
+            <div class="mb-4">
+                <select name="gender" class="w-full border p-2" required>
+                    <option value="M">Nam</option>
+                    <option value="F">Nữ</option>
+                    <option value="O">Khác</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <select name="parent_id" class="w-full border p-2">
+                    {% for p in parents %}
+                        <option value="{{ p.id }}">{{ p.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <input name="current_grade" type="number" placeholder="Lớp" class="w-full border p-2" required>
+            </div>
+
+            <button class="bg-green-600 text-white px-4 py-2 rounded">Lưu Học sinh</button>
+        </form>
+    </div>
+
+</div>
+{% endblock %}

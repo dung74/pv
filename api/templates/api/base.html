@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TeenUp LMS Mini</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-blue-600 p-4 text-white shadow-lg">
+        <div class="container mx-auto flex justify-between">
+            <h1 class="font-bold text-xl">TeenUp Product Builder</h1>
+            <div>
+                <a href="{% url 'parent_student' %}" class="px-4">Phụ huynh & Học sinh</a>
+                <a href="{% url 'class_list' %}" class="px-4">Lớp học</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container mx-auto p-6">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="p-4 mb-4 text-white bg-{{ message.tags }}-500 rounded">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% block content %}{% endblock %}
+    </div>
+</body>
+{% if messages %}
+<div class="p-4">
+    {% for message in messages %}
+        <div class="mb-2 p-3 rounded 
+            {% if message.tags == 'success' %} bg-green-200 text-green-800 
+            {% elif message.tags == 'error' %} bg-red-200 text-red-800
+            {% else %} bg-gray-200 text-gray-800 {% endif %}">
+            {{ message }}
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+</html>

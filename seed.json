@@ -1,0 +1,89 @@
+[
+  {
+    "model": "api.parent",
+    "pk": 1,
+    "fields": {
+      "name": "Nguyễn Văn A",
+      "phone": "0912345678",
+      "email": "vana@gmail.com"
+    }
+  },
+  {
+    "model": "api.parent",
+    "pk": 2,
+    "fields": {
+      "name": "Trần Thị B",
+      "phone": "0987654321",
+      "email": "thib@gmail.com"
+    }
+  },
+  {
+    "model": "api.student",
+    "pk": 1,
+    "fields": {
+      "name": "Học Sinh 1",
+      "dob": "2015-05-20",
+      "gender": "Nam",
+      "current_grade": 3,
+      "parent": 1
+    }
+  },
+  {
+    "model": "api.student",
+    "pk": 2,
+    "fields": {
+      "name": "Học Sinh 2",
+      "dob": "2016-08-15",
+      "gender": "Nữ",
+      "current_grade": 2,
+      "parent": 1
+    }
+  },
+  {
+    "model": "api.student",
+    "pk": 3,
+    "fields": {
+      "name": "Học Sinh 3",
+      "dob": "2014-02-10",
+      "gender": "Nam",
+      "current_grade": 4,
+      "parent": 2
+    }
+  },
+  {
+    "model": "api.class",
+    "pk": 1,
+    "fields": {
+      "name": "Toán Tư Duy Cơ Bản",
+      "subject": "Toán",
+      "day_of_week": 0,
+      "time_slot": "08:00:00",
+      "teacher_name": "Thầy Tùng",
+      "max_students": 10
+    }
+  },
+  {
+    "model": "api.class",
+    "pk": 2,
+    "fields": {
+      "name": "Tiếng Anh Giao Tiếp",
+      "subject": "Tiếng Anh",
+      "day_of_week": 2,
+      "time_slot": "14:00:00",
+      "teacher_name": "Cô Lan",
+      "max_students": 15
+    }
+  },
+  {
+    "model": "api.subscription",
+    "pk": 1,
+    "fields": {
+      "student": 1,
+      "package_name": "Gói 10 buổi",
+      "start_date": "2026-03-01",
+      "end_date": "2026-12-31",
+      "total_sessions": 10,
+      "used_sessions": 0
+    }
+  }
+]
